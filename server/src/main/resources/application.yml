@@ -1,0 +1,46 @@
+server:
+  port: ${SERVER_PORT:8080}
+  servlet:
+    context-path: /
+
+springdoc:
+  swagger-ui:
+    operations-sorter: method
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+spring:
+  data:
+    mongodb:
+      host: ${DATABASE_HOST:localhost:27017}
+      database: ${DATABASE_DB:cards}
+      username: ${DATABASE_USERNAME:root}
+      password: ${DATABASE_PASSWORD:password}
+      authentication-database: admin
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+application:
+  socket:
+    host: ${SOCKET_HOST:localhost}
+    port: ${SOCKET_PORT:8081}
+
+management:
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
